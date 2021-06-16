@@ -1,0 +1,121 @@
+Tiki is an open source bluetooth chat app framework. Quickly and easily implement your own mesh network
+
+
+###List of Functions
+[x]create_user()
+[x]send_messages()
+[x]read_messages()
+[x]delete_messages()
+[x]connect bluetooth
+###
+
+
+import random #used to generate random number#
+import sys #helps the program work better within the compiler#
+import socket #the python socket built in library allows for bluetooth and wifi networking#
+
+
+
+class User:
+    def __init__(self, name, id, inbox, ticket):
+        self.name = ""   #allows you to name your device.#
+        self.id = ""     #an i.d. allows other users and routers to identify your device.#
+        self.inbox = []  #this is where the user will recive notification of message#
+        self.ticket = [] #the ticket is a randomly generated number that allows the user to a specific message#
+    
+
+
+
+u1 = User("", "", [], []) #this is the user object that gives access to the user functions#
+
+
+#this is a dicitonairy object that holds incoming messages from other users#
+Messages = {
+   
+}
+
+
+
+send_addr = input("enter bluetooth adress of recipient:")#bluetooth adress of person you want to send messages#
+baddr = input("enter your bluetooth adress:")            #example 'a4:50:4f:f8:44:66'#
+channel = 4     #this is the channle your device will use to pick up the bluetooth signal #
+s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM,socket.BTPROTO_RFCOMM)   #this is the bluetooth proticol used to safely  share information#
+s.connect((baddr,channel))     #bins the socket, the adress and the channel together#
+s_sock = server_sock.accept()    #this is the socket where the server accepts data from other devices#
+print ("Accepted connection from "+address)
+data = s_sock.recv(1024)    #s_sock is the client data#
+print ("received [%s]" % data)
+s.listen(5)   #this is where our serverscans for incoming data#
+
+
+
+
+#takes data receaved from socket and adds it to a dictionairy#
+if data == True and len(Messages) < 51: #this alows for there to b only 50 messages in the inbox#
+        n = random.randint(100, 9000)  #this creates an identificaton number for each message#
+        Messages[n] = data  #this binds the data sent from other devices to the messages dictionairy#  
+        k = n
+        user.ticket.append(k)  #adds the message id to the users inbox#
+        user.inbox += 1 #tells users how many messages they have in the message dictionairy#
+    else:
+        print("inbox is full")
+
+
+
+
+
+#in this function we set the list in the user inbox to# 
+#0 so we can increase x by 1 each time we get a message.#
+def clear_inbox(u1):
+    x = 0
+    user.inbox = 0 
+    while x < len(user.ticket):    
+        del Messages[user.ticket[x]]
+        del user.ticket[x]
+        x += 1
+
+
+
+
+#here we take the user ticket object, each ticket acts#
+#as a lable that helps us keep track of that specific message in the dictionairy#
+def read_messages(u1):
+    x = 0
+    while x < len(user.ticket):    
+        print(Messages[user.ticket[x]])
+        x += 1
+        
+
+
+
+
+#this function allows us to create a User object#
+def create_user(u1):
+    a = input("enter user name:")   
+    user.name = a 
+    user.id = random.randint(1000, 9000) 
+    user.inbox = 0
+    Users.append(user.name)
+     
+
+
+
+
+def send_message(u1, send_addr):
+    x = 0
+    while x < :
+        print("message sent!")
+        s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM) 
+        port = 3125
+        s.connect((send_addr, port))
+        i = input("enter message:")+"  from:"+user.name
+        s.sendall(i.encode())    
+        s.close()
+        x += 1
+
+
+
+
+
+        
+   
